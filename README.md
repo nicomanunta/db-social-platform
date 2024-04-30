@@ -4,9 +4,18 @@
 
    SELECT \*,
    YEAR(CURDATE()) - YEAR(birthdate) AS age
-   FROM Users;
+   FROM users;
 
 2. Seleziona tutti i post senza Like (13)
+
+   SELECT posts. \*
+   FROM posts
+   LEFT JOIN likes ON posts.id = likes.post_id
+   <!-- prende tutte le righe della tabella posts anche senza corrispondenze con la tabella likes, si uniscono le righe dove posts id della tabella posts corrispondono al post id della tabella likes -->
+
+   WHERE likes.post_id IS NULL;
+   <!-- si filtrano tutti i posts che non hanno corrispondenza nella tabella likes -->
+
 3. Conta il numero di like per ogni post (165)
 4. Ordina gli utenti per il numero di media caricati (25)
 5. Ordina gli utenti per totale di likes ricevuti nei loro posts (25)
